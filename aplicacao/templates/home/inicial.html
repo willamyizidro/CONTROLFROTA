@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlcar</title>
+    <link rel="shortcut icon" href="{% static 'icone_pagina.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'scripts.js' %}"></script>
+</head>
+    
+<body id="conteudo">
+   <!-- navbar -->
+   
+    <div class="navbar">
+        <ul>
+            <li class="nav-item">
+                <a href="{% url 'inicial' %}">INICIO</a>
+            </li>
+            <li class="nav-item">
+                <a >VEICULO</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'cadastroVeiculo' %}">CADASTRAR VEICULO</a></li>
+                    <li class="sub-item"><a href="{% url 'acessarVeiculo' %}">ACESSAR VEICULO</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a >MANUTENÇÃO</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'cadastroManutencao' %}">CADASTRAR MANUTENÇÃO</a></li>
+                    <li class="sub-item"><a href="{% url 'informarManutencao' %}">INFORMAR MANUTENÇÃO</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a >MOTORISTA</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'cadastrarMotorista' %}">CADASTRAR MOTORISTA</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a >ABASTECIMENTO</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'informarAbastecimento' %}">INFORMAR ABASTECIMENTO</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a >RELATORIOS</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'gerarRelatorio' %}">GERAR RELATORIOS</a></li>
+                </ul>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+                <a >EDITAR</a>
+                <ul class="sub-menu">
+                    <li class="sub-item"><a href="{% url 'visualizarVeiculo' %}">VEICULO</a></li>
+                    <li class="sub-item"><a href="{% url 'visualizarTipoManutencao' %}">TIPO MANUTENÇÃO</a></li>
+                    <li class="sub-item"><a href="{% url 'visualizarManutencao' %}">MANUTENÇÃO</a></li>
+                    <li class="sub-item"><a href="{% url 'visualizarMotoristas' %}">MOTORISTA</a></li>
+                    <li class="sub-item"><a href="{% url 'visualizarAbastecimento' %}">ABASTECIMENTO</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a href="{% url 'logout' %}">SAIR</a>
+                <!-- <a href="http://127.0.0.1:8000/accounts/logout">SAIR</a> -->
+            </li>
+        </ul>
+        <img src="{% static 'boneco_login.png' %}" alt="Sua Imagem">
+    </div>
+    <div class="container">
+        <section id="secao2">
+            {% block content %}
+            {% endblock %}
+            <header>
+                {% if message %}
+               <div class="alert alert-warning">
+                 {{ message }}
+               </div>
+             {% endif %}
+             </header>
+        </section>
+    </div>
+    
+</body>
+</html>
+

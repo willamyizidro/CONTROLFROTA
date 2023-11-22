@@ -1,0 +1,32 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1> ABASTECIMENTOS</h1></header>
+   
+    <form method="GET" action="{% url 'buscarAbastecimento' %}">
+        <input type="text" name="placa" placeholder="Digite a placa" class="input">
+        <button type="submit" class="input-botao">Pesquisar</button>
+    </form>
+
+    <div>    
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+        {% endif %}
+    </div>
+    
+    <div class="editar-container">
+        <ul>
+            {% for abastecimento in abastecimentos %}
+                <li>{{ abastecimento.veiculo }} - {{abastecimento.data}} <a href="{% url 'editarAbastecimento' abastecimento.id %}"> - editar</a></li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+
+
+
+    {% endblock %}

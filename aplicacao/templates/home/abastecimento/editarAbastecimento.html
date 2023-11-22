@@ -1,0 +1,27 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Editar Abastecimento</h1></header>
+    {{abastecimento.id}} - {{abastecimento.veiculo}}
+    <form action="{% url 'updateAbastecimento' abastecimento.id %}" method="POST" class="meu-formulario" >
+        {% csrf_token %}
+        <p class="label">Veiculo</p>
+        {{ form.veiculo}}
+        <p class="label">DATA </p>
+        <input type="date" name="data" value="{{datafor}}">
+        <p class="label">LITROS</p>
+        {{ form.litros}}
+        <p class="label">KM ATUAL</p>
+        {{ form.kmatual}}
+        <div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <input type="submit" class="input-botao" >  
+    </form>
+    {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Editar Motorista</h1></header>
+    {{motorista.id}} - {{motorista.nome}}
+    <form action="{% url 'updateMotorista' motorista.id %}" method="POST" class="meu-formulario" >
+        {% csrf_token %}
+        <p class="label">NOME</p>
+        {{ form.nome}}
+        <p class="label">ENDEREÇO</p>
+        {{ form.endereco }}
+        <p class="label">CNH</p>
+        {{ form.cnh }}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        <input type="submit" class="input-botao" >  
+    </form>
+    {% endblock %}

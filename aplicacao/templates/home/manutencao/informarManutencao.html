@@ -1,0 +1,28 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Informar Manutenção</h1></header>
+
+    <form method="post" class="meu-formulario">
+        {% csrf_token %}
+        <p class="label">MANUTENÇÃO</p>
+        {{ form.manutencao}}
+        <p class="label">Veiculo</p>
+        {{ form.veiculo}}
+        <p class="label">DATA DA MANUTENCAO</p>
+        {{ form.dataAtual}}
+        <p class="label">KM DA MANUTENCAO</p>
+        {{ form.kmAtual}}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit" class="input-botao">Enviar</button>
+    </form>
+
+
+    {% endblock %}

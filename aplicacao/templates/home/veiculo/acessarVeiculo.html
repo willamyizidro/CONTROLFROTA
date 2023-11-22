@@ -1,0 +1,18 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Acessar Veiculo</h1></header>
+
+
+
+    <select id="SelecionarPlaca" name="Placas">
+        {% for veiculo in veiculos %}
+            <option value="{{ veiculo.id }}">
+                {{ veiculo.placa }}
+            </option>
+        {% endfor %}
+    </select>
+    
+    <button class="input-botao" onclick="abrirRelatorio()">Visualizar</button>
+
+    {% endblock %}

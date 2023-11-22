@@ -1,0 +1,28 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Cadastrar Manutenção</h1></header>
+
+    <form action="" class="meu-formulario" method="post">
+        {% csrf_token %}
+        <p class="label">NOME DA MANUTENÇÃO</p>
+        {{ form.produto}}
+        <p class="label">TEMPO EM DIAS PARA TROCA</p>
+        {{ form.tempoTroca}}
+        <p class="label">QUANTIDADE KM PARA TROCA</p>
+        {{ form.kmTroca}}
+        <p class="label">VALOR DA MANUTENÇÃO</p>
+        {{ form.valor}}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit" class="input-botao">Enviar</button>
+
+    </form>
+
+    {% endblock %}

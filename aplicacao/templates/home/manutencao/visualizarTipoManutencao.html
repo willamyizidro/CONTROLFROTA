@@ -1,0 +1,15 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1> TIPOS DE MANUTENÇÃO</h1></header>
+    <select id="SelecionarManutencao" name="Manutencao">
+        {% for manutencao in manutencoes %}
+            <option value="{{ manutencao.id }}">
+                {{ manutencao.produto }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button class="input-botao" onclick="editarManutencao()">Editar</button>
+
+{% endblock %}

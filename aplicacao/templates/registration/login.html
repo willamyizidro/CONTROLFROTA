@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlcar</title>
+    <link rel="shortcut icon" href="{% static 'icone_pagina.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+    
+<body>
+    </div>
+   <!-- navbar -->
+    <div class="navbar">
+        <img src="{% static 'boneco_login.png' %}" alt="Sua Imagem">
+    </div>
+
+    <header><h1>Entrar</h1></header>
+
+    <p>Não possui cadastro? <a href="{% url 'cadastro' %}" >Cadastre-se</a></p>
+    <div class="container">
+        <section id="secao1">
+
+            <form  method="post" class="meu-formulario">
+                {% csrf_token %}
+                <p class="label">USUARIO</p>
+                <input type="text" id="usuario"  name="username" required autofocus>
+                <p class="label">SENHA</p>
+                <input type="password" id="password"  name="password" required>
+    
+                <div>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+    
+    
+                </div>
+                   
+            <input type="submit" class="input-botao">  
+            </form>  
+
+        </section>
+    </div>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>

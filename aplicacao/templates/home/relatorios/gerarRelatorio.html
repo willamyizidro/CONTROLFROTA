@@ -1,0 +1,19 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Gerar Relatorios</h1></header>
+  
+    <select id="SelecionarPlaca" name="Placas">
+        {% for veiculo in veiculos %}
+            <option value="{{ veiculo.id }}">
+                {{ veiculo.placa }}
+            </option>
+        {% endfor %}
+    </select>
+    
+    <button class="input-botao" onclick="abrirRelatorioGeral()">Visualizar</button>
+
+
+
+
+    {% endblock %}

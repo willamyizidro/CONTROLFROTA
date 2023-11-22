@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="{% static 'icone_pagina.ico' %}" type="image/x-icon">
+
+    <title>Controlcar</title>
+    </head>
+  
+    <body>
+     
+    
+   <!-- navbar -->
+    <div class="navbar">
+        <img src="{% static 'boneco_login.png' %}" >
+    </div>
+    <header><h1>Cadastrar usuário</h1></header>
+    Já registrado? <a href="accounts/login/" >Conecte-se</a>
+    <div class="container">
+        <section id="secao1">
+            
+            <form action="" method="POST" class="meu-formulario">
+                {% csrf_token %}
+                <p class="label">NOME</p>
+                {{ form.nome|default:'' }}
+                <p class="label">USUARIO</p>
+                {{ form.usuario|default:'' }}
+                <p class="label">EMAIL</p>
+                {{ form.email|default:'' }}
+                <p class="label">SENHA</p>
+                {{ form.senha }}
+                <p class="label">CONFIRME A SENHA</p>
+                {{ form.conf_senha}}
+                <div>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+                   
+            <input type="submit" class="input-botao">  
+        </section>
+    </div>
+
+    <script src="{% static 'scripts.js' %}" ></script>
+
+</body>
+
+</html>

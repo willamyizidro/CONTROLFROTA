@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Controlcar</title>
+    
+</head>
+    
+<body>
+    </div>
+   <!-- navbar -->
+    <div class="navbar">
+        <img src="{% static 'boneco_login.png' %}" alt="Sua Imagem">
+    </div>
+
+    <header><h1>Entrar</h1></header>
+
+    <section id="secao1">
+        <div class="test">
+            <p class="l">USUÁRIO</p>
+            <input type="text" name="nome" id="nome" class="input-entrada" required>
+            <p class="l">SENHA</p>
+            <input type="password" id="senha" name="senha" class="input-entrada" required>
+            <div id="res">
+                Por favor preencha os dados!
+            </div class="button">
+            <input type="button" value="Logar" onclick="cadastrar()" class="input-botao">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+
+    <header><h1>Informar Abastecimento</h1></header>
+    <form method="post" class="meu-formulario">
+        {% csrf_token %}
+        <p class="label">Veiculo</p>
+        {{ form.veiculo}}
+        <p class="label">DATA </p>
+        {{ form.data}}
+        <p class="label">LITROS</p>
+        {{ form.litros}}
+        <p class="label">KM ATUAL</p>
+        {{ form.kmatual}}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit" class="input-botao">Enviar</button>
+    </form>
+
+
+    {% endblock %}
+

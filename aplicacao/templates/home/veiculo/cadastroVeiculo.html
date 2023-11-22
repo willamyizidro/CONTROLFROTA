@@ -1,0 +1,31 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1>Cadastro de Veiculo</h1></header>
+
+    <form action="" class="meu-formulario" method="post">
+        {% csrf_token %}
+        <p class="label">PLACA</p>
+        {{ form.placa}}
+        <p class="label">CHASSI</p>
+        {{ form.chassi}}
+        <p class="label">MARCA</p>
+        {{ form.marca}}
+        <p class="label">MODELO</p>
+        {{ form.modelo}}
+        <p class="label">TARA</p>
+        {{ form.tara}}
+        <p class="label">TAMANHO</p>
+        {{ form.tamanho}}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit" class="input-botao">Cadastrar</button>
+
+    </form>
+    {% endblock %}

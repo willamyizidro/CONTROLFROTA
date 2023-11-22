@@ -1,0 +1,32 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1> MANUTENCÇÕES</h1></header>
+   
+    <form method="GET" action="{% url 'buscarManutencao' %}">
+        <input type="text" name="placa" placeholder="Digite a placa" class="input">
+        <button type="submit" class="input-botao">Pesquisar</button>
+    </form>
+
+    <div>    
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+        {% endif %}
+    </div>
+    
+    <div class="manutencao-container">
+        <ul>
+            {% for manutencao in manutencoes %}
+                <li>{{ manutencao.veiculo }} - {{manutencao.manutencao}} - {{manutencao.dataAtual}}  <a href="{% url 'editarManutencao' manutencao.id %}"> - editar</a></li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+
+
+
+    {% endblock %}

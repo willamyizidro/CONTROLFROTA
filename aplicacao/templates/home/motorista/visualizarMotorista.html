@@ -1,0 +1,15 @@
+{% extends 'home/inicial.html' %}
+
+{% block content %}
+    <header><h1> MOTORISTAS</h1></header>
+   
+    <select id="SelecionarMotorista" name="Motorista">
+        {% for motorista in motoristas %}
+            <option value="{{ motorista.id }}">
+                {{ motorista.nome }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button class="input-botao" onclick="editarMotorista()">Editar</button>
+    {% endblock %}
