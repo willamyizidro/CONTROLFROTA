@@ -77,7 +77,7 @@ def login(request):
                 login_django(request,user)
             else:
                 messages.error(request, 'Usuario ou senha Invalidos.', extra_tags='error-message')
-                return render(request, 'accounts/login.html', {"form": LoginForm})
+                return redirect('login')
  
 
 @login_required
