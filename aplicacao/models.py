@@ -91,3 +91,5 @@ class Abastecimentos(models.Model):
             self.mediaVeiculo = 0
 
         super().save(*args, **kwargs)
+    def __str__(self):
+        return f'Abastecimento no dia {self.data} para {self.veiculo}'
