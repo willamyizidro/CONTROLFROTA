@@ -96,12 +96,12 @@ def cadastrarMotorista(request):
         motaux = MotoristaForm(request.POST)
         if motaux.is_valid():
             mot = Motorista()
-            testmot = Motorista.objects.get(nome=motaux.cleaned_data['nome'])
+            mot.nome = motaux.cleaned_data['nome']
+            testmot = Motorista.objects.filter(nome=mot.nome).exists()
             if testmot:
                 messages.error(request, 'NOME JA CADASTRADO', extra_tags='error-message')
                 return redirect('cadastrarMotorista')
             else:
-                mot.nome = motaux.cleaned_data['nome']
                 mot.endereco =  motaux.cleaned_data['endereco']
                 mot.cnh = motaux.cleaned_data['cnh']
                 mot.save()
@@ -120,12 +120,12 @@ def cadastroManutencao(request):
         manutAux = TipoManutencoesForms(request.POST)
         if manutAux.is_valid():
             manut = TipoManutencao()
-            testeman = TipoManutencao.objects.get(produto=manutAux.cleaned_data['produto'])
+            manut.produto = manutAux.cleaned_data['produto']
+            testeman = TipoManutencao.objects.filter(produto=manut.produto).exists()
             if testeman:
                 messages.error(request, 'JA EXISTE UMA MANUTENÇÃO COM ESSE NOME!', extra_tags='error-message')
                 return redirect('cadastroManutencao')
             else:
-                manut.produto = manutAux.cleaned_data['produto']
                 manut.tempoTroca = manutAux.cleaned_data['tempoTroca']
                 manut.kmTroca = manutAux.cleaned_data['kmTroca']
                 manut.valor = manutAux.cleaned_data['valor']
@@ -146,14 +146,14 @@ def cadastroVeiculo(request):
         veicAux = VeiculoForms(request.POST)
         if veicAux.is_valid():
             veiculo = Veiculo()
-            testepl = Veiculo.objects.get(placa=veicAux.cleaned_data['placa'])
+            veiculo.placa = veicAux.cleaned_data['placa']
+            testepl = Veiculo.objects.filter(placa=veiculo.placa).exists()
             if testepl:
                 messages.error(request, 'PLACA JA CADASTRADA', extra_tags='error-message')
                 return redirect('cadastroVeiculo')
             else:
-                veiculo.placa = veicAux.cleaned_data['placa']
                 veiculo.chassi = veicAux.cleaned_data['chassi']
-                testech = Veiculo.objects.get(chassi=veiculo.chassi)
+                testech = Veiculo.objects.filter(chassi=veiculo.chassi).exists()
                 if testech:
                     messages.error(request, 'CHASSI JA CADASTRADO', extra_tags='error-message')
                     return redirect('cadastroVeiculo')
@@ -486,7 +486,7 @@ def relatorio_veiculo(request, veiculo_id):
     p.drawString(480, 810, f'Usuário: {nome}')
 
 
-    imagem_path = 'static/prototipo3.png'
+    imagem_path = 'static/icone_relatorio.png'
     
     with Image.open(imagem_path) as img:
         # Adicionar transparência
@@ -567,7 +567,7 @@ def relatorio_geral_veiculo(request, veiculo_id):
     p.drawString(480, 810, f'Usuário: {nome}')
 
 
-    imagem_path = 'static/prototipo3.png'
+    imagem_path = 'static/icone_relatorio.png'
     
     with Image.open(imagem_path) as img:
         # Adicionar transparência
